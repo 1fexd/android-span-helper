@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "fe.span.helper"
-        minSdk = 24
+        minSdk = Version.MIN_SDK
         targetSdk = Version.COMPILE_SDK
         compileSdk = Version.COMPILE_SDK
         versionCode = (System.currentTimeMillis() / 1000).toInt()
