@@ -52,7 +52,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":compose-material3"))
+    implementation(project(":compose"))
+    implementation(AndroidX.compose.material3)
 
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.activity.compose)

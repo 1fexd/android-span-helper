@@ -27,7 +27,7 @@ plugins {
 }
 
 
-include("core", "compose", "compose-material3")
+include("core", "compose")
 
 if (System.getenv("JITPACK")?.toBooleanStrictOrNull() != false) {
     include("testapp")

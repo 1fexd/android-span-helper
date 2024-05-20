@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.text.SpanStyle
 import fe.android.span.helper.composable.createAnnotatedString
-import fe.android.span.helper.compose.material3.LinkAnnotationStyleDefaults
 
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,9 @@ class MainActivity : ComponentActivity() {
                 Text(text = createAnnotatedString(id = R.string.test_string_format, "helo"))
                 Text(text = createAnnotatedString(id = R.string.test_string_format_annotated, "yeet"))
 
-                CompositionLocalProvider(LocalLinkAnnotationStyle provides LinkAnnotationStyleDefaults.primary) {
+                CompositionLocalProvider(
+                    LocalLinkAnnotationStyle provides LinkAnnotationStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary))
+                ) {
                     Text(text = createAnnotatedString(id = R.string.test_string_format_url, "yeet"))
                 }
             }
