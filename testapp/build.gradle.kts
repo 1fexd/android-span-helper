@@ -52,18 +52,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":compose"))
     implementation(project(":compose-material3"))
 
     implementation(AndroidX.core.ktx)
-    implementation(AndroidX.lifecycle.viewModelKtx)
-    implementation(AndroidX.lifecycle.runtime.ktx)
     implementation(AndroidX.activity.compose)
-    implementation(platform(AndroidX.compose.bom))
-    implementation(AndroidX.compose.ui)
-    implementation(AndroidX.compose.ui.graphics)
-    implementation(AndroidX.compose.ui.toolingPreview)
-    implementation(AndroidX.compose.material3)
-
-    implementation(project(":core"))
 }

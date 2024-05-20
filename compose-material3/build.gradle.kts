@@ -42,12 +42,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":compose"))
-
-    implementation(AndroidX.compose.ui)
-    implementation(AndroidX.compose.material3)
+    api(project(":compose"))
+    api(AndroidX.compose.material3)
 }
-
 
 publishing.publish(
     project,

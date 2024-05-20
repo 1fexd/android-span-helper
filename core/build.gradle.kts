@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    implementation(AndroidX.core.ktx)
+    api(AndroidX.core.ktx)
 
     testImplementation(Testing.robolectric)
     testImplementation(Testing.junit.jupiter)
