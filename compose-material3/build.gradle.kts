@@ -45,7 +45,7 @@ dependencies {
     implementation(project(":compose"))
 
     implementation(AndroidX.compose.ui)
-    implementation("androidx.compose.material3:material3:1.3.0-alpha05")
+    implementation(AndroidX.compose.material3)
 }
 
 

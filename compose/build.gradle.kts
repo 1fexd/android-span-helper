@@ -43,7 +43,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation("androidx.compose.ui:ui:1.7.0-alpha07")
+    implementation(AndroidX.compose.ui)
 
     implementation(AndroidX.core.ktx)
 }

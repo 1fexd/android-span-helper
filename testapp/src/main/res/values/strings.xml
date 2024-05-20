@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="test_string">Test string</string>
+    <string name="test_string_format">Test %s</string>
+    <string name="test_string_format_annotated">Test <b>%s</b></string>
+    <string name="test_string_format_url">Test <annotation url="https://google.com">%s</annotation></string>
+</resources>

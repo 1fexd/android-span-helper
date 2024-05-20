@@ -16,8 +16,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    testOptions.unitTests.isIncludeAndroidResources = true
-
     kotlin {
         jvmToolchain(Version.JVM)
         explicitApi()
@@ -33,6 +31,18 @@ android {
 
 dependencies {
     implementation(AndroidX.core.ktx)
+
+    testImplementation(Testing.robolectric)
+    testImplementation(Testing.junit.jupiter)
+    testImplementation(AndroidX.test.core)
+    testImplementation(AndroidX.test.coreKtx)
+    testImplementation(AndroidX.test.ext.truth)
+    testImplementation(AndroidX.test.ext.junit)
+    testImplementation(AndroidX.test.ext.junit.ktx)
+    testImplementation(AndroidX.test.runner)
+    androidTestUtil(AndroidX.test.orchestrator)
+
+    testImplementation(kotlin("test"))
 }
 
 
