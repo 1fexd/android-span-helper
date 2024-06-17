@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.LinkInteractionListener
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.style.TextDecoration
 
 
@@ -19,7 +20,7 @@ public data class LinkAnnotationStyle(
     val interactionListener: LinkInteractionListener? = null
 ) {
     public fun toUrlAnnotation(value: String): LinkAnnotation.Url {
-        return LinkAnnotation.Url(value, style, focusedStyle, hoveredStyle, pressedStyle, interactionListener)
+        return LinkAnnotation.Url(value, TextLinkStyles(style, focusedStyle, hoveredStyle, pressedStyle), interactionListener)
     }
 }
 
