@@ -1,19 +1,30 @@
+import fe.buildsrc.Version
+import fe.buildsrc.dependency.PinnedVersions
+import fe.buildsrc.dependency._1fexd
+import fe.buildsrc.publishing.PublicationComponent
+import fe.buildsrc.publishing.publish
+import fe.buildsrc.publishing.asProvider
+
 plugins {
-    id(libs.plugins.com.android.library)
-    id(libs.plugins.org.jetbrains.kotlin.android)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("net.nemerosa.versioning")
     `maven-publish`
-    id(libs.plugins.net.nemerosa.versioning)
 }
 
-val group = "fe.android.span.helper"
+group = "fe.android.span.helper"
 
 android {
-    namespace = group
+    namespace = group.toString()
     compileSdk = Version.COMPILE_SDK
 
     defaultConfig {
         minSdk = Version.MIN_SDK
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     kotlin {
@@ -45,11 +56,9 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
-
 publishing.publish(
     project,
-    "com.github.1fexd.android-span-helper",
-    "core",
-    versioning.info.tag ?: versioning.info.full,
+    group.toString(),
+    versioning.asProvider(project),
     PublicationComponent.RELEASE
 )

@@ -1,16 +1,23 @@
-import de.fayard.refreshVersions.core.versionFor
+import fe.buildsrc.Version
+import fe.buildsrc.dependency.PinnedVersions
+import fe.buildsrc.dependency._1fexd
+import fe.buildsrc.publishing.PublicationComponent
+import fe.buildsrc.publishing.publish
+import fe.buildsrc.publishing.asProvider
+
 
 plugins {
-    id(libs.plugins.com.android.library)
-    id(libs.plugins.org.jetbrains.kotlin.android)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
+    id("net.nemerosa.versioning")
     `maven-publish`
-    id(libs.plugins.net.nemerosa.versioning)
 }
 
-val group = "fe.android.span.helper.compose"
+group = "fe.android.span.helper.compose"
 
 android {
-    namespace = group
+    namespace = group.toString()
     compileSdk = Version.COMPILE_SDK
 
     defaultConfig {
@@ -20,17 +27,13 @@ android {
 
     testOptions.unitTests.isIncludeAndroidResources = true
 
-    kotlin {
-        jvmToolchain(Version.JVM)
-        explicitApi()
-    }
-
     buildFeatures {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = versionFor(AndroidX.compose.compiler)
+    kotlin {
+        jvmToolchain(Version.JVM)
+        explicitApi()
     }
 
     publishing {
@@ -48,8 +51,7 @@ dependencies {
 
 publishing.publish(
     project,
-    "com.github.1fexd.android-span-helper",
-    "compose",
-    versioning.info.tag ?: versioning.info.full,
+    group.toString(),
+    versioning.asProvider(project),
     PublicationComponent.RELEASE
 )
