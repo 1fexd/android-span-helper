@@ -10,6 +10,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.core.text.toSpanned
 import fe.android.span.helper.LinkAnnotationStyle
 import fe.android.span.helper.LocalLinkAnnotationStyle
+import fe.android.span.helper.LocalLinkTags
 import fe.android.span.helper.ext.format
 import fe.android.span.helper.ext.handleSpanned
 
@@ -18,10 +19,9 @@ public fun createAnnotatedString(
     @StringRes id: Int,
     vararg formatArgs: Any?,
     style: LinkAnnotationStyle? = null,
-    options: LinkOptions = LinkOptions(),
 ): AnnotatedString {
     return buildAnnotatedString {
-        fromStringRes(id, *formatArgs, style = style, options = options)
+        fromStringRes(id, *formatArgs, style = style)
     }
 }
 
@@ -30,7 +30,6 @@ public fun AnnotatedString.Builder.fromStringRes(
     @StringRes id: Int,
     vararg formatArgs: Any?,
     style: LinkAnnotationStyle? = null,
-    options: LinkOptions = LinkOptions(),
 ): AnnotatedString.Builder {
     val resources = LocalContext.current.resources
     val density = LocalDensity.current
@@ -40,11 +39,5 @@ public fun AnnotatedString.Builder.fromStringRes(
         resources.getText(id).toSpanned().format(*formatArgs)
     }
 
-    return handleSpanned(spanned, density, linkStyle, options)
+    return handleSpanned(spanned, density, linkStyle, LocalLinkTags.current)
 }
-
-public class LinkOptions(
-    public val urlAnnotationKey: String = "url",
-    public val urlIdAnnotationKey: String = "url-id",
-    public val urlIds: Map<String, String> = emptyMap(),
-)
