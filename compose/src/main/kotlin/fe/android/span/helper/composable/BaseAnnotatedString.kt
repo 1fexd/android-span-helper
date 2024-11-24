@@ -17,10 +17,11 @@ import fe.android.span.helper.ext.handleSpanned
 public fun createAnnotatedString(
     @StringRes id: Int,
     vararg formatArgs: Any?,
-    urlLinkStyle: LinkAnnotationStyle? = null
+    style: LinkAnnotationStyle? = null,
+    options: LinkOptions = LinkOptions(),
 ): AnnotatedString {
     return buildAnnotatedString {
-        fromStringRes(id, *formatArgs, urlLinkStyle = urlLinkStyle)
+        fromStringRes(id, *formatArgs, style = style, options = options)
     }
 }
 
@@ -28,15 +29,22 @@ public fun createAnnotatedString(
 public fun AnnotatedString.Builder.fromStringRes(
     @StringRes id: Int,
     vararg formatArgs: Any?,
-    urlLinkStyle: LinkAnnotationStyle? = null
+    style: LinkAnnotationStyle? = null,
+    options: LinkOptions = LinkOptions(),
 ): AnnotatedString.Builder {
     val resources = LocalContext.current.resources
     val density = LocalDensity.current
-    val linkStyle = urlLinkStyle ?: LocalLinkAnnotationStyle.current
+    val linkStyle = style ?: LocalLinkAnnotationStyle.current
 
     val spanned = remember(id, formatArgs) {
         resources.getText(id).toSpanned().format(*formatArgs)
     }
 
-    return handleSpanned(spanned, density, linkStyle)
+    return handleSpanned(spanned, density, linkStyle, options)
 }
+
+public class LinkOptions(
+    public val urlAnnotationKey: String = "url",
+    public val urlIdAnnotationKey: String = "url-id",
+    public val urlIds: Map<String, String> = emptyMap(),
+)

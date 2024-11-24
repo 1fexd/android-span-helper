@@ -1,6 +1,4 @@
 import fe.buildsrc.Version
-import fe.buildsrc.dependency.PinnedVersions
-import fe.buildsrc.dependency._1fexd
 import fe.buildsrc.publishing.PublicationComponent
 import fe.buildsrc.publishing.publish
 import fe.buildsrc.publishing.asProvider
@@ -47,6 +45,7 @@ android {
 dependencies {
     api(project(":core"))
     api(AndroidX.compose.ui)
+    api(AndroidX.compose.ui.text)
 }
 
 publishing.publish(
